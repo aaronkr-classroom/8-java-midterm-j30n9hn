@@ -74,10 +74,6 @@ public class LibrarySystem extends LibraryBook{
 					// 메시지를 인쇄하다
 				// }
 				return; // 책 제거 후 종료 방법
-			// }
-		// }
-		// 찾을 수 없으면 메시지를 인쇄합니다.
-				System.out.println("# 오류: '" + title + "' 못 찾았습니다!");
 			}
 		}
 	}
