@@ -1,4 +1,4 @@
-public class LibrarySystem {
+public class LibrarySystem extends LibraryBook{
 	// 변수 정의
 	private Book[] booklist;
 	private static int bookCount = 0;
@@ -11,7 +11,7 @@ public class LibrarySystem {
 	public void addBook(Book book) {
 		// 책 추가
 		// 도움을 위해 Cart.java의 insertBook(Book book)을 참조하세요
-		booklist[bookcount++] = new Book(book);
+		booklist[bookCount++] = new Book(book);
 	}
 	
 	public void removeBook(String title) {
@@ -42,16 +42,20 @@ public class LibrarySystem {
 		for ( int i = 0; i < bookCount; i++ ) {
             // `if` 책 제목이 발견되면 {
 			if ( booklist[i].getTitle().equals(title)) {
-				setAvailable = false;
-				System.out.println("borrowbook");
-			} else {
-				System.out.println("Fail to borrowbook");
-			}
-			return; // 책 제거 후 종료 방법
-		 }
+				if (isAvailable()) {
+					this.setAvailable(isAvailable());
+					System.out.println("borrowbook");
+				}
+				 else {
+					System.out.println("Fail to borrowbook");
+				}
+				return; // 책 제거 후 종료 방법
+		 	}
 		// 찾을 수 없으면 메시지를 인쇄합니다.
-		System.out.println("# 오류: '" + title + "' 못 찾았습니다!");
+			System.out.println("# 오류: '" + title + "' 못 찾았습니다!");
+		}	
 	}
+
 	
 	public void returnBook(String title) {
 	    // `for` LibrarySystem의 모든 Book {
@@ -59,9 +63,9 @@ public class LibrarySystem {
             // `if` 책 제목이 발견되면 {
 			if ( booklist[i].getTitle().equals(title)) {
                 // `if` 책이 없다면 {
-				if (!setAvailable) {
+				if (!isAvailable()) {
 					System.out.println("There in no The book");
-					setAvailable = true;
+					this.setAvailable(isAvailable());
 				} else {
 					System.out.println("Return book complete");
 				}
@@ -73,16 +77,18 @@ public class LibrarySystem {
 			// }
 		// }
 		// 찾을 수 없으면 메시지를 인쇄합니다.
-		System.out.println("# 오류: '" + title + "' 못 찾았습니다!");
+				System.out.println("# 오류: '" + title + "' 못 찾았습니다!");
+			}
+		}
 	}
 	
 	public void displayAllBooks() {
 		// 책 목록 출력 (책이름, 저자, 출판년도, 대출가능여부 출력)
-		for (int i = 0; i < booklist; i++) {
-			System.out.print(booklist[i].getIsbn() = " | ");
-			System.out.print(booklist[i].getTitle() = " | ");
-			System.out.print(booklist[i].getAuthor() = " | ");
-			System.out.print(booklist[i].getYear() = " | ");
+		for (int i = 0; i < booklist.length; i++) {
+			System.out.print(booklist[i].getIsbn() + " | ");
+			System.out.print(booklist[i].getTitle() + " | ");
+			System.out.print(booklist[i].getAuthor() + " | ");
+			System.out.print(booklist[i].getYear() + " | ");
 			System.out.print(booklist[i].isAvailable());
 			System.out.println("");
 		}
