@@ -6,18 +6,24 @@ public class LibraryBook implements Book {
 	private boolean available;
 
 	public LibraryBook(Book book) {
-		    // 생성자
+		    
 	}
 
 	public LibraryBook(String isbn, String title, String author, int year) {
-		    // 생성자
+		    this.isbn = getIsbn();
+			this.title = getTitle();
+			this.author = getTitle();
+			this.year = getYear();
+			this.available = true;
 	}
 
 	@Override
-	public String getIsbn(); // return isbn
-	public String getTitle(); // return title
-	public String getAuthor(); // return author
-	public int getYear(); // return year
-	public boolean isAvailable(); // return available
-	public void setAvailable(boolean available);
+	public String getIsbn() { return this.isbn; }// return isbn
+	public String getTitle() {return this.title; }// return title
+	public String getAuthor() {return this.author; }// return author
+	public int getYear() {return this.year;}// return year
+	public boolean isAvailable() {return this.available;} // return available
+	public void setAvailable(boolean available) {
+		this.available = true;
+	}
 }
